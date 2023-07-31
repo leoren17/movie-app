@@ -1,20 +1,24 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './moviecard.css';
 
-const MovieCard = ({m}) => {
+const MovieCard = ({movie}) => {
     return (
-        <div className="movie">
-            <div>
-                <h3>{m.Title}</h3>
+        
+        <div className='col m-2 d-flex justify-content-start'>
+            {/* <div>
+                <h3>{movie.Title}</h3>
             </div>
             <div>
-                <p>{m.Year}</p>
+                <p>{movie.Year}</p>
             </div>
             <div>
-                <p>{m.Type}</p>
-            </div>
-            <div>
+                <p>{movie.Type}</p>
+            </div> */}
+            <div className="img-container">
                 {/* <img src='https://via.placeholder.com/400' /> */}
-                <img src={m.Poster} />
+                <img className="poster"
+                    src={movie.Poster === 'N/A' ? 'https://placehold.co/270x400?text=Poster+N/A' : movie.Poster} alt={movie.Title} />
             </div>
         </div>
     );

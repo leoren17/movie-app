@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import MovieCard from './MovieCard';
 
@@ -14,14 +15,19 @@ const App = () => {
     const search = async (title) => {
         const responseObject = await fetch(`${OMDB_API_URL}&s=${title}`);
         const data = await responseObject.json();
-        setMovies(data.Search);
-        console.log(data.Search);
-        console.log(movies);
+        if (data.Search) {
+            setMovies(data.Search);
+        }        
     }
     // same as componentDidMount()
     useEffect(() => {
-        search("pulp");
+        search("avengers");
     }, []);
+
+    // each time searchTerm changes
+    useEffect(() => {
+        search(searchTerm);
+    }, [searchTerm]);
 
     // what an entry in data.Search looks like
     const tmp = {
@@ -34,28 +40,31 @@ const App = () => {
 
     return (
         <div className="app">
-            <h1>Movie Search</h1>
-            <div className="search">
-                <input 
-                    placeholder="Search for movies"
-                    value={searchTerm}
-                    onChange={(e) => {setSearchTerm(e.target.value)}}
-                />
-                <button 
-                    onClick={() => {search(searchTerm)}}>
-                    search!
-                </button>
-            </div>
-            
-            <div className="container">
+            <div className="container">      
+                <div className="row align-items-center m-4">
+                    <h1 className="mb-3">Search for Movies</h1>
+                    <input className="col form-control input"
+                        placeholder="Search for movies"
+                        value={searchTerm}
+                        onChange={(e) => {setSearchTerm(e.target.value)}}
+                    />
+                    {/* <button className="col"
+                        onClick={() => {search(searchTerm)}}>
+                        search!
+                    </button> */}
+                </div>           
             {
-                movies.length > 0 
-                ? (
-                    <MovieCard m={movies[0]}/>
+                // checks to make sure movies is not null or undefined
+                // if movies is null/undefined, return undefined
+                movies?.length > 0 
+                ? (                    
+                    <div className='row'>
+                        {movies.map((m) => <MovieCard movie = {m}/>)}
+                    </div>
                 ) : (
                     <h1>No Movies Found!</h1>
                 )
-            }
+            }        
             </div>
         </div>
     );

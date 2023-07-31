@@ -1,0 +1,17 @@
+
+
+.poster {
+    border-radius: 1rem;
+}
+
+.img-container {
+    /* border: 2px red solid; */
+    border-radius: 1rem;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.img-container:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
