@@ -1,7 +1,9 @@
 body {
-    background: rgb(22, 22, 22);
-    color: rgb(249, 235, 235);
+  background: rgb(22, 22, 22);
+  color: rgb(249, 235, 235);
+  /* overflow: hidden; */
 }
 
-.input {
+body::-webkit-scrollbar {
+  display: none;
 }
