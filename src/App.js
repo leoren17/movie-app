@@ -40,9 +40,9 @@ const App = () => {
 
     return (
         <div className="app">
-            <div className="container">      
+            <div className="container-fluid">      
                 <div className="row align-items-center m-4">
-                    <h1 className="mb-3">Search for Movies</h1>
+                    <h1 className="mb-3 text-center">Search for Movies</h1>
                     <input className="col form-control input"
                         placeholder="Search for movies"
                         value={searchTerm}
